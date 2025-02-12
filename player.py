@@ -4,6 +4,7 @@ from constants import *
 from shot import Shot
 
 class Player(CircleShape):
+    timer = 0
     def __init__(self, x, y):
         super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
@@ -42,11 +43,14 @@ class Player(CircleShape):
             self.move(-dt)
 
         if keys[pygame.K_SPACE]:
-            self.shoot()
+            self.shoot(dt)
 
-    def shoot(self):
-        bullet = Shot(self.position.x, self.position.y, SHOT_RADIUS)
-        bullet.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
-        print(bullet.position)
+    def shoot(self, dt):
+        if self.timer > 0:
+            self.timer -= dt
+        else:
+            self.timer = PLAYER_SHOOT_COOLDOWN
+            bullet = Shot(self.position.x, self.position.y, SHOT_RADIUS)
+            bullet.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOOT_SPEED
 
 
