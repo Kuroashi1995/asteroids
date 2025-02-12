@@ -16,10 +16,11 @@ def main():
                 return
 
         print(f"Game running in {SCREEN_WIDTH}x{SCREEN_HEIGHT}")
+        dt = clock.tick(60) / 1000
         pygame.Surface.fill(screen, (0,0,0))
+        player.update(dt)
         player.draw(screen)
         pygame.display.flip()
-        dt = clock.tick(60) / 1000
         print(dt)
 
 if __name__ == "__main__":
