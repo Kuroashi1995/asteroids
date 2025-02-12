@@ -24,7 +24,7 @@ def main():
         pygame.Surface.fill(screen, (0,0,0))
         updatable.update(dt)
         for image in drawable:
-            image.draw()
+            image.draw(screen)
         pygame.display.flip()
         print(dt)
 
