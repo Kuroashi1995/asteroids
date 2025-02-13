@@ -38,7 +38,7 @@ def main():
             for bullet in bullets:
                 if object.check_collision(bullet):
                     bullet.kill()
-                    object.kill()
+                    object.split()
 
 
         for image in drawable:
